@@ -96,8 +96,8 @@ yearPieChart.width(200)
   .height(200)
   .dimension(yearDim)
   .group(yearHits)
-  .innerRadius(45);
-
+  .innerRadius(45)
+  .ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"]);
 /***********************
  Stacked Area Line Chart
  ***********************/
@@ -121,7 +121,8 @@ stackedLineChart.width(700)
   .elasticX(true)
   .brushOn(false)
   .legend(dc.legend().x(60).y(10).itemHeight(13).gap(5))
-  .yAxisLabel("Hits per day");
+  .yAxisLabel("Hits per day")
+  .ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"]);
 
 /********************
   Render All Chart
