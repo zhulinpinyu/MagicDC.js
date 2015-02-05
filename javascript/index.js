@@ -141,6 +141,14 @@ stackedLineChart.width(600)
   .brushOn(false)
   .legend(dc.legend().x(60).y(10).itemHeight(13).gap(5))
   .yAxisLabel("Hits per day")
+  .margins({top:20,left:50,right:10,bottom:50})
+  .renderlet(function(chart){
+    chart.selectAll("g.x text").attr({
+      dx: "-30",
+      dy: "-7",
+      transform: "rotate(-90)"
+    })
+  })
   .compose([compose1,compose2]);
 
 
