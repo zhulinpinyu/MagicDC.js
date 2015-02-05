@@ -97,13 +97,10 @@ yearPieChart.width(200)
   .dimension(yearDim)
   .group(yearHits)
   .innerRadius(45)
-  //关闭饼图每个部分显示的标签
-  .renderLabel(false)
-  .renderTitle(false)
-  //添加legend 图例
-  .legend(dc.legend().x(80).y(75).itemHeight(13).gap(5))
-  //添加颜色
-  .ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"]);
+  .renderLabel(false) //关闭饼图每个部分显示的标签
+  .renderTitle(false) //关闭mouseover提示
+  .legend(dc.legend().x(80).y(75).itemHeight(13).gap(5)) //添加legend 图例
+  .ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"]); //添加颜色
 
 /***********************
  Stacked Area Line Chart
@@ -113,24 +110,39 @@ var qtimeHits = qtimeDim.group().reduceSum(function(d){return d.hits;});
 var hits_2011 = qtimeDim.group().reduceSum(function(d){return d.Year === 2011 ? d.hits : 0;});
 var hits_2012 = qtimeDim.group().reduceSum(function(d){return d.Year === 2012 ? d.hits : 0;});
 var hits_2013 = qtimeDim.group().reduceSum(function(d){return d.Year === 2013 ? d.hits : 0;});
+
+var target_2011 = qtimeDim.group().reduceSum(function(d){return d.Year === 2011 ? 10 : 0;});
+var target_2012 = qtimeDim.group().reduceSum(function(d){return d.Year === 2012 ? 20 : 0;});
+var target_2013 = qtimeDim.group().reduceSum(function(d){return d.Year === 2013 ? 30 : 0;});
+
 var minDate = new Date("01/01/1900");
 var maxDate = new Date("12/31/1900");
 
-var stackedLineChart = dc.lineChart("#stacked-line-chart");
-stackedLineChart.width(700)
-  .height(300)
-  .dimension(qtimeDim)
+var stackedLineChart = dc.compositeChart("#stacked-line-chart");
+
+var compose1 = dc.lineChart(stackedLineChart)
+  .dimension(qtimeHits)
+  .ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"])
   .group(hits_2011,"2011")
   .stack(hits_2012,"2012")
-  .stack(hits_2013,"2013")
+  .stack(hits_2013,"2013");
+
+var compose2 = dc.lineChart(stackedLineChart)
+  .dimension(qtimeDim)
+  .ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"])
+  .group(target_2011,"2011 target")
+  .stack(target_2012,"2012 target")
+  .stack(target_2013,"2013 target")
+  .dashStyle([5,5]);
+
+stackedLineChart.width(600)
+  .height(300)
   .x(d3.time.scale().domain([minDate,maxDate]))
-  .renderArea(true)
-  .elasticX(true)
   .brushOn(false)
   .legend(dc.legend().x(60).y(10).itemHeight(13).gap(5))
   .yAxisLabel("Hits per day")
-  //添加颜色
-  .ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"]);
+  .compose([compose1,compose2]);
+
 
 /********************
   Render All Chart
