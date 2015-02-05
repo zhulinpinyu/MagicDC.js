@@ -86,9 +86,9 @@ data.forEach(function(d){
 
 var ndx = crossfilter(data);
 
-/************
- 年为维度画饼图
- *************/
+/************************
+ 以年为维度画饼图 Pie Chart
+ ************************/
 var yearDim = ndx.dimension(function(d){ return +d.Year;});
 var yearHits = yearDim.group().reduceSum(function(d){return +d.hits;});
 var yearPieChart = dc.pieChart("#year-pie-chart");
@@ -98,6 +98,32 @@ yearPieChart.width(200)
   .group(yearHits)
   .innerRadius(45);
 
-dc.renderAll();
+/***********************
+ Stacked Area Line Chart
+ ***********************/
+var qtimeDim = ndx.dimension(function(d){return d.qtime;})
+var qtimeHits = qtimeDim.group().reduceSum(function(d){return d.hits;});
+var hits_2011 = qtimeDim.group().reduceSum(function(d){return d.Year === 2011 ? d.hits : 0;});
+var hits_2012 = qtimeDim.group().reduceSum(function(d){return d.Year === 2012 ? d.hits : 0;});
+var hits_2013 = qtimeDim.group().reduceSum(function(d){return d.Year === 2013 ? d.hits : 0;});
+var minDate = new Date("01/01/1900");
+var maxDate = new Date("12/31/1900");
 
-console.log(data);
+var stackedLineChart = dc.lineChart("#stacked-line-chart");
+stackedLineChart.width(700)
+  .height(300)
+  .dimension(qtimeDim)
+  .group(hits_2011,"2011")
+  .stack(hits_2012,"2012")
+  .stack(hits_2013,"2013")
+  .x(d3.time.scale().domain([minDate,maxDate]))
+  .renderArea(true)
+  .elasticX(true)
+  .brushOn(false)
+  .legend(dc.legend().x(60).y(10).itemHeight(13).gap(5))
+  .yAxisLabel("Hits per day");
+
+/********************
+  Render All Chart
+ ********************/
+dc.renderAll();
