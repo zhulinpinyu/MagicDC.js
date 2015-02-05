@@ -97,7 +97,14 @@ yearPieChart.width(200)
   .dimension(yearDim)
   .group(yearHits)
   .innerRadius(45)
+  //关闭饼图每个部分显示的标签
+  .renderLabel(false)
+  .renderTitle(false)
+  //添加legend 图例
+  .legend(dc.legend().x(80).y(75).itemHeight(13).gap(5))
+  //添加颜色
   .ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"]);
+
 /***********************
  Stacked Area Line Chart
  ***********************/
@@ -122,6 +129,7 @@ stackedLineChart.width(700)
   .brushOn(false)
   .legend(dc.legend().x(60).y(10).itemHeight(13).gap(5))
   .yAxisLabel("Hits per day")
+  //添加颜色
   .ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"]);
 
 /********************
