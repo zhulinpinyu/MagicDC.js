@@ -516,31 +516,31 @@ dc.renderAll();
  Jquery Update
  *******************/
 
-var lineChart_stack_tooltip_pretty = function(class_id,display) {
-  lineChart_q1.selectAll("g.stack._"+class_id).attr("display", display);
-  lineChart_q1.selectAll("g.dc-tooltip._"+class_id).attr("display", display);
-  lineChart_q2.selectAll("g.stack._"+class_id).attr("display", display);
-  lineChart_q2.selectAll("g.dc-tooltip._"+class_id).attr("display", display);
-  lineChart_q3.selectAll("g.stack._"+class_id).attr("display", display);
-  lineChart_q3.selectAll("g.dc-tooltip._"+class_id).attr("display", display);
-  lineChart_q4.selectAll("g.stack._"+class_id).attr("display", display);
-  lineChart_q4.selectAll("g.dc-tooltip._"+class_id).attr("display", display);
+var lineChart_stack_tooltip_pretty = function(stack_class,tooltip_class,display) {
+  lineChart_q1.selectAll(stack_class).attr("display", display);
+  lineChart_q1.selectAll(tooltip_class).attr("display", display);
+  lineChart_q2.selectAll(stack_class).attr("display", display);
+  lineChart_q2.selectAll(tooltip_class).attr("display", display);
+  lineChart_q3.selectAll(stack_class).attr("display", display);
+  lineChart_q3.selectAll(tooltip_class).attr("display", display);
+  lineChart_q4.selectAll(stack_class).attr("display", display);
+  lineChart_q4.selectAll(tooltip_class).attr("display", display);
 }
 
 $("#year-pie-chart").on('click', function(){
   if ($("g.pie-slice._0").is(".deselected")) {
-    lineChart_stack_tooltip_pretty(0,"none");
+    lineChart_stack_tooltip_pretty("g.stack._0","g.dc-tooltip._0","none");
   } else {
-    lineChart_stack_tooltip_pretty(0,null);
+    lineChart_stack_tooltip_pretty("g.stack._0","g.dc-tooltip._0",null);
   }
   if ($("g.pie-slice._1").is(".deselected")) {
-    lineChart_stack_tooltip_pretty(1,"none");
+    lineChart_stack_tooltip_pretty("g.stack._1","g.dc-tooltip._1","none");
   } else {
-    lineChart_stack_tooltip_pretty(1,null);
+    lineChart_stack_tooltip_pretty("g.stack._1","g.dc-tooltip._1",null);
   }
   if ($("g.pie-slice._2").is(".deselected")) {
-    lineChart_stack_tooltip_pretty(2,"none");
+    lineChart_stack_tooltip_pretty("g.stack._2","g.dc-tooltip._2","none");
   } else {
-    lineChart_stack_tooltip_pretty(2,null);
+    lineChart_stack_tooltip_pretty("g.stack._2","g.dc-tooltip._2",null);
   }
 });
