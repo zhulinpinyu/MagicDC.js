@@ -116,6 +116,20 @@ var target_2013 = qtimeDim.group().reduceSum(function(d){
 });
 
 
+/******************
+ Pie-chart by Year
+*******************/
+
+var yearDim = ndx.dimension(function(d){return +d.Year;});
+var yearHits = yearDim.group().reduceSum(function(d){return d.hits;});
+var yearPieChart = dc.pieChart("#year-pie-chart");
+yearPieChart.width(250)
+            .height(250)
+            .dimension(yearDim)
+            .group(yearHits)
+            .legend(dc.legend().x(100).y(95).itemHeight(13).gap(5))
+            .ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"])
+            .innerRadius(70);
 
 /***************
  Q1
