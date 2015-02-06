@@ -274,5 +274,75 @@ lineChart_q4.width(200)
  Render All in HTML
  *******************/
 
-
 dc.renderAll();
+
+
+/*******************
+ Jquery Update
+ *******************/
+
+$("#year-pie-chart").on('click', function(){
+  if($("g.pie-slice._0").is(".deselected")){
+    lineChart_q1.selectAll("g.stack._0").attr("display","none");
+    lineChart_q1.selectAll("g.dc-tooltip._0").attr("display","none");
+    lineChart_q2.selectAll("g.stack._0").attr("display","none");
+    lineChart_q2.selectAll("g.dc-tooltip._0").attr("display","none");
+    lineChart_q3.selectAll("g.stack._0").attr("display","none");
+    lineChart_q3.selectAll("g.dc-tooltip._0").attr("display","none");
+    lineChart_q4.selectAll("g.stack._0").attr("display","none");
+    lineChart_q4.selectAll("g.dc-tooltip._0").attr("display","none");
+  }else{
+    lineChart_q1.selectAll("g.stack._0").attr("display",null);
+    lineChart_q1.selectAll("g.dc-tooltip._0").attr("display",null);
+    lineChart_q2.selectAll("g.stack._0").attr("display",null);
+    lineChart_q2.selectAll("g.dc-tooltip._0").attr("display",null);
+    lineChart_q3.selectAll("g.stack._0").attr("display",null);
+    lineChart_q3.selectAll("g.dc-tooltip._0").attr("display",null);
+    lineChart_q4.selectAll("g.stack._0").attr("display",null);
+    lineChart_q4.selectAll("g.dc-tooltip._0").attr("display",null);
+  }
+  if($("g.pie-slice._1").is(".deselected")){
+    lineChart_q1.selectAll("g.stack._1").attr("display","none");
+    lineChart_q1.selectAll("g.dc-tooltip._1").attr("display","none");
+    lineChart_q2.selectAll("g.stack._1").attr("display","none");
+    lineChart_q2.selectAll("g.dc-tooltip._1").attr("display","none");
+    lineChart_q3.selectAll("g.stack._1").attr("display","none");
+    lineChart_q3.selectAll("g.dc-tooltip._1").attr("display","none");
+    lineChart_q4.selectAll("g.stack._1").attr("display","none");
+    lineChart_q4.selectAll("g.dc-tooltip._1").attr("display","none");
+  }else{
+    lineChart_q1.selectAll("g.stack._1").attr("display",null);
+    lineChart_q1.selectAll("g.dc-tooltip._1").attr("display",null);
+    lineChart_q2.selectAll("g.stack._1").attr("display",null);
+    lineChart_q2.selectAll("g.dc-tooltip._1").attr("display",null);
+    lineChart_q3.selectAll("g.stack._1").attr("display",null);
+    lineChart_q3.selectAll("g.dc-tooltip._1").attr("display",null);
+    lineChart_q4.selectAll("g.stack._1").attr("display",null);
+    lineChart_q4.selectAll("g.dc-tooltip._1").attr("display",null);
+  }
+  if($("g.pie-slice._2").is(".deselected")){
+    lineChart_q1.selectAll("g.stack._2").attr("display","none");
+    lineChart_q1.selectAll("g.dc-tooltip._2").attr("display","none");
+    lineChart_q2.selectAll("g.stack._2").attr("display","none");
+    lineChart_q2.selectAll("g.dc-tooltip._2").attr("display","none");
+    lineChart_q3.selectAll("g.stack._2").attr("display","none");
+    lineChart_q3.selectAll("g.dc-tooltip._2").attr("display","none");
+    lineChart_q4.selectAll("g.stack._2").attr("display","none");
+    lineChart_q4.selectAll("g.dc-tooltip._2").attr("display","none");
+  }else{
+    lineChart_q1.selectAll("g.stack._2").attr("display",null);
+    lineChart_q1.selectAll("g.dc-tooltip._2").attr("display",null);
+    lineChart_q2.selectAll("g.stack._2").attr("display",null);
+    lineChart_q2.selectAll("g.dc-tooltip._2").attr("display",null);
+    lineChart_q3.selectAll("g.stack._2").attr("display",null);
+    lineChart_q3.selectAll("g.dc-tooltip._2").attr("display",null);
+    lineChart_q4.selectAll("g.stack._2").attr("display",null);
+    lineChart_q4.selectAll("g.dc-tooltip._2").attr("display",null);
+  }
+});
+
+
+
+
+
+

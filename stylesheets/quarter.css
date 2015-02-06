@@ -1,5 +1,18 @@
 #q2-line-chart.dc-chart .axis.y,
 #q3-line-chart.dc-chart .axis.y,
-#q4-line-chart.dc-chart .axis.y{
+#q4-line-chart.dc-chart .axis.y {
   opacity: 0.0;
+}
+
+.dc-chart g.deselected path {
+  opacity: 0.5;
+  fill-opacity: 0.5;
+}
+
+.dc-chart .pie-slice :hover {
+  fill-opacity: 0.8;
+};
+
+.dc-chart .pie-slice.highlight {
+  fill-opacity: 0.8;
 }
