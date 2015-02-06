@@ -149,9 +149,43 @@ lineChart_q1.width(210)
             .yAxisLabel("Hits per day")
             .xAxisLabel("Q1")
             .compose([compose1,compose2])
+            .renderlet(function(chart){chart.selectAll("g.x path.domain").attr("d","M0,0H118")})
             .xAxis().ticks(0);
 
 
+/***************
+ Q2
+***************/
+
+var lineChart_q2 = dc.compositeChart("#q2-line-chart");
+var minDate_q2 = new Date("04/01/1900");
+var maxDate_q2 = new Date("06/15/1900")
+
+var compose1 = dc.lineChart(lineChart_q2)
+                  .dimension(qtimeHits)
+                  .ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"])
+                  .renderArea(true)
+                  .group(hits_2011,"2011")
+                  .stack(hits_2012,"2012")
+                  .stack(hits_2013,"2013");
+
+var compose2 = dc.lineChart(lineChart_q2)
+                  .dimension(qtimeDim)
+                  .ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"])
+                  .group(target_2011,"2011 Target")
+                  .stack(target_2012,"2012 Target")
+                  .stack(target_2013,"2013 Target")
+                  .dashStyle([5,5])
+
+
+lineChart_q2.width(200)
+            .height(300)
+            .x(d3.time.scale().domain([minDate_q1,maxDate_q2]))
+            .brushOn(false)
+            .xAxisLabel("Q2")
+            .compose([compose1,compose2])
+            .renderlet(function(chart){chart.selectAll("g.x path.domain").attr("d","M0,0H118")})
+            .xAxis().ticks(0)
 /*******************
  Render All in HTML
  *******************/
