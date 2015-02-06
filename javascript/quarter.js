@@ -186,6 +186,76 @@ lineChart_q2.width(200)
             .compose([compose1,compose2])
             .renderlet(function(chart){chart.selectAll("g.x path.domain").attr("d","M0,0H118")})
             .xAxis().ticks(0)
+
+
+/***************
+ Q3
+***************/
+
+var lineChart_q3 = dc.compositeChart("#q3-line-chart");
+var minDate_q3 = new Date("07/01/1900");
+var maxDate_q3 = new Date("09/15/1900");
+
+var compose1 = dc.lineChart(lineChart_q3)
+                  .dimension(qtimeHits)
+                  .ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"])
+                  .renderArea(true)
+                  .group(hits_2011,"2011")
+                  .stack(hits_2012,"2012")
+                  .stack(hits_2013,"2013");
+
+var compose2 = dc.lineChart(lineChart_q3)
+                  .dimension(qtimeDim)
+                  .ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"])
+                  .group(target_2011,"2011 Target")
+                  .stack(target_2012,"2012 Target")
+                  .stack(target_2013,"2013 Target")
+                  .dashStyle([5,5]);
+
+lineChart_q3.width(200)
+            .height(300)
+            .xAxisLabel("Q3")
+            .x(d3.time.scale().domain([minDate_q3,maxDate_q3]))
+            .brushOn(false)
+            .compose([compose1,compose2])
+            .renderlet(function(chart){chart.selectAll("g.x path.domain").attr("d","M0,0H118")})
+            .xAxis().ticks(0);
+
+
+/***************
+ Q4
+***************/
+
+var lineChart_q4 = dc.compositeChart("#q4-line-chart");
+var minDate_q4 = new Date("10/01/1900");
+var maxDate_q4 = new Date("12/15/1900");
+
+var compose1 = dc.lineChart(lineChart_q4)
+                  .dimension(qtimeHits)
+                  .ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"])
+                  .renderArea(true)
+                  .group(hits_2011,"2011")
+                  .stack(hits_2012,"2012")
+                  .stack(hits_2013,"2013");
+
+var compose2 = dc.lineChart(lineChart_q4)
+                  .dimension(qtimeDim)
+                  .ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"])
+                  .group(target_2011,"2011 Target")
+                  .stack(target_2012,"2012 Target")
+                  .stack(target_2013,"2013 Target")
+                  .dashStyle([5,5]);
+
+lineChart_q4.width(200)
+            .height(300)
+            .xAxisLabel("Q4")
+            .x(d3.time.scale().domain([minDate_q4,maxDate_q4]))
+            .brushOn(false)
+            .compose([compose1,compose2])
+            .renderlet(function(chart){chart.selectAll("g.x path.domain").attr("d","M0,0H118")})
+            .xAxis().ticks(0);
+
+
 /*******************
  Render All in HTML
  *******************/
