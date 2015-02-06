@@ -358,6 +358,27 @@ yearPieChart.width(250)
   .ordinalColors(["#56B2EA", "#E064CD", "#F8B700", "#78CC00", "#7B71C5"])
   .innerRadius(70);
 
+var compose1 = function(lineChart_quarter){
+  return dc.lineChart(lineChart_quarter)
+  .dimension(qtimeHits)
+  .ordinalColors(["#56B2EA", "#E064CD", "#F8B700", "#78CC00", "#7B71C5"])
+  .renderArea(true)
+  .group(hits_2011, "2011")
+  .stack(hits_2012, "2012")
+  .stack(hits_2013, "2013");
+}
+
+var compose2 = function(lineChart_quarter){
+  return dc.lineChart(lineChart_q1)
+  .dimension(qtimeDim)
+  .ordinalColors(["#56B2EA", "#E064CD", "#F8B700", "#78CC00", "#7B71C5"])
+  .group(target_2011, "2011 Target")
+  .stack(target_2012, "2012 Target")
+  .stack(target_2013, "2013 Target")
+  .dashStyle([5, 5]);
+}
+
+
 /***************
  Q1
 ***************/
@@ -366,22 +387,6 @@ var lineChart_q1 = dc.compositeChart("#q1-line-chart");
 var minDate_q1 = new Date("01/01/1900");
 var maxDate_q1 = new Date("03/15/1900");
 
-var compose1 = dc.lineChart(lineChart_q1)
-  .dimension(qtimeHits)
-  .ordinalColors(["#56B2EA", "#E064CD", "#F8B700", "#78CC00", "#7B71C5"])
-  .renderArea(true)
-  .group(hits_2011, "2011")
-  .stack(hits_2012, "2012")
-  .stack(hits_2013, "2013");
-
-var compose2 = dc.lineChart(lineChart_q1)
-  .dimension(qtimeDim)
-  .ordinalColors(["#56B2EA", "#E064CD", "#F8B700", "#78CC00", "#7B71C5"])
-  .group(target_2011, "2011 Target")
-  .stack(target_2012, "2012 Target")
-  .stack(target_2013, "2013 Target")
-  .dashStyle([5, 5]);
-
 lineChart_q1.width(210)
   .height(300)
   .x(d3.time.scale().domain([minDate_q1, maxDate_q1]))
@@ -389,7 +394,7 @@ lineChart_q1.width(210)
   .legend(dc.legend().x(60).y(10).itemHeight(13).gap(5))
   .yAxisLabel("Hits per day")
   .xAxisLabel("Q1")
-  .compose([compose1, compose2])
+  .compose([compose1(lineChart_q1), compose2(lineChart_q1)])
   .renderlet(function(chart) {
     chart.selectAll("g.x path.domain").attr("d", "M0,0H118")
   })
@@ -402,31 +407,14 @@ lineChart_q1.width(210)
 
 var lineChart_q2 = dc.compositeChart("#q2-line-chart");
 var minDate_q2 = new Date("04/01/1900");
-var maxDate_q2 = new Date("06/15/1900")
-
-var compose1 = dc.lineChart(lineChart_q2)
-  .dimension(qtimeHits)
-  .ordinalColors(["#56B2EA", "#E064CD", "#F8B700", "#78CC00", "#7B71C5"])
-  .renderArea(true)
-  .group(hits_2011, "2011")
-  .stack(hits_2012, "2012")
-  .stack(hits_2013, "2013");
-
-var compose2 = dc.lineChart(lineChart_q2)
-  .dimension(qtimeDim)
-  .ordinalColors(["#56B2EA", "#E064CD", "#F8B700", "#78CC00", "#7B71C5"])
-  .group(target_2011, "2011 Target")
-  .stack(target_2012, "2012 Target")
-  .stack(target_2013, "2013 Target")
-  .dashStyle([5, 5])
-
+var maxDate_q2 = new Date("06/15/1900");
 
 lineChart_q2.width(200)
   .height(300)
   .x(d3.time.scale().domain([minDate_q1, maxDate_q2]))
   .brushOn(false)
   .xAxisLabel("Q2")
-  .compose([compose1, compose2])
+  .compose([compose1(lineChart_q2), compose2(lineChart_q2)])
   .renderlet(function(chart) {
     chart.selectAll("g.x path.domain").attr("d", "M0,0H118")
   })
@@ -441,28 +429,12 @@ var lineChart_q3 = dc.compositeChart("#q3-line-chart");
 var minDate_q3 = new Date("07/01/1900");
 var maxDate_q3 = new Date("09/15/1900");
 
-var compose1 = dc.lineChart(lineChart_q3)
-  .dimension(qtimeHits)
-  .ordinalColors(["#56B2EA", "#E064CD", "#F8B700", "#78CC00", "#7B71C5"])
-  .renderArea(true)
-  .group(hits_2011, "2011")
-  .stack(hits_2012, "2012")
-  .stack(hits_2013, "2013");
-
-var compose2 = dc.lineChart(lineChart_q3)
-  .dimension(qtimeDim)
-  .ordinalColors(["#56B2EA", "#E064CD", "#F8B700", "#78CC00", "#7B71C5"])
-  .group(target_2011, "2011 Target")
-  .stack(target_2012, "2012 Target")
-  .stack(target_2013, "2013 Target")
-  .dashStyle([5, 5]);
-
 lineChart_q3.width(200)
   .height(300)
   .xAxisLabel("Q3")
   .x(d3.time.scale().domain([minDate_q3, maxDate_q3]))
   .brushOn(false)
-  .compose([compose1, compose2])
+  .compose([compose1(lineChart_q3), compose2(lineChart_q3)])
   .renderlet(function(chart) {
     chart.selectAll("g.x path.domain").attr("d", "M0,0H118")
   })
@@ -477,28 +449,12 @@ var lineChart_q4 = dc.compositeChart("#q4-line-chart");
 var minDate_q4 = new Date("10/01/1900");
 var maxDate_q4 = new Date("12/15/1900");
 
-var compose1 = dc.lineChart(lineChart_q4)
-  .dimension(qtimeHits)
-  .ordinalColors(["#56B2EA", "#E064CD", "#F8B700", "#78CC00", "#7B71C5"])
-  .renderArea(true)
-  .group(hits_2011, "2011")
-  .stack(hits_2012, "2012")
-  .stack(hits_2013, "2013");
-
-var compose2 = dc.lineChart(lineChart_q4)
-  .dimension(qtimeDim)
-  .ordinalColors(["#56B2EA", "#E064CD", "#F8B700", "#78CC00", "#7B71C5"])
-  .group(target_2011, "2011 Target")
-  .stack(target_2012, "2012 Target")
-  .stack(target_2013, "2013 Target")
-  .dashStyle([5, 5]);
-
 lineChart_q4.width(200)
   .height(300)
   .xAxisLabel("Q4")
   .x(d3.time.scale().domain([minDate_q4, maxDate_q4]))
   .brushOn(false)
-  .compose([compose1, compose2])
+  .compose([compose1(lineChart_q4), compose2(lineChart_q4)])
   .renderlet(function(chart) {
     chart.selectAll("g.x path.domain").attr("d", "M0,0H118")
   })
