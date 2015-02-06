@@ -1,0 +1,5 @@
+#q2-line-chart.dc-chart .axis.y,
+#q3-line-chart.dc-chart .axis.y,
+#q4-line-chart.dc-chart .axis.y{
+  opacity: 0.0;
+}
