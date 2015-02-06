@@ -354,6 +354,13 @@ yearPieChart.width(250)
   .height(250)
   .dimension(yearDim)
   .group(yearHits)
+  .label(function(d){
+    var total_hits = 0;
+    yearHits.all().forEach(function(d){
+      total_hits += d.value;
+    });
+    return Math.round((d.value/total_hits)*1000)/10.0+"%";
+  })
   .legend(dc.legend().x(100).y(95).itemHeight(13).gap(5))
   .ordinalColors(["#56B2EA", "#E064CD", "#F8B700", "#78CC00", "#7B71C5"])
   .innerRadius(70);
